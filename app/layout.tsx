@@ -1,18 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next"; 
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Lawrence - Portfolio",
@@ -25,16 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
         <SidebarProvider>
-          <AppSidebar />
-          <main className="w-full">
-            <SidebarTrigger className="fixed top-4 left-4 z-50" />
-            {children}
-          </main>
-        </SidebarProvider>
-      </body>
-    </html>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        <SpeedInsights/>
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }
